@@ -418,14 +418,101 @@
             "extends": []
         },
         {
-            "name": "TipInput",
-            "id": "component-TipInput-eac8dfaa8d3a605d0e5143fa5edc18f8cde68bac9ad122942b7d2e58fe345ca3c8631ae07863e071599b48b9963d12554cfc625647f15e2746b5b17eef7c118f",
-            "file": "src/app/components/tip-input/tip-input.ts",
+            "name": "TipForm",
+            "id": "component-TipForm-3153465416af3847a8d62aec11b7bcade9b1c61d01c992cd876d6188c394ac685793c323dce9b427da212e30bc455b42c3fb1a9387c38ecc8f2ef64fd04cb201",
+            "file": "src/app/components/tip-form/tip-form.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
+            "selector": "app-tip-form",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./tip-form.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "fb",
+                    "defaultValue": "inject(FormBuilder)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "inputForm",
+                    "defaultValue": "this.fb.group({\n    tipAmount: [0],\n    persons: [10],\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "submitForm",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "TipInput"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, inject } from '@angular/core';\nimport { FormBuilder, ReactiveFormsModule } from '@angular/forms';\nimport { TipInput } from '../tip-input/tip-input';\n\n@Component({\n  selector: 'app-tip-form',\n  imports: [TipInput,ReactiveFormsModule],\n  templateUrl: './tip-form.html',\n  styleUrl: './tip-form.css',\n})\nexport class TipForm {\n  private fb = inject(FormBuilder);\n  inputForm = this.fb.group({\n    tipAmount: [0],\n    persons: [10],\n  });\n  submitForm() {\n    if (this.inputForm.valid) {\n      const tipAmount = this.inputForm.value.tipAmount;\n      console.log('Tip Amount:', tipAmount);\n    } else {\n      console.log('Form is invalid');\n    }\n  }\n}\n",
+            "styleUrl": "./tip-form.css",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<form [formGroup]=\"inputForm\" class=\"flex flex-col gap-4\" (ngSubmit)=\"submitForm()\">\n  <app-tip-input\n    label=\"Tip Amount\"\n    variant=\"currency\"\n    [value]=\"0\"\n    formControlName=\"tipAmount\"\n  ></app-tip-input>\n\n  <app-tip-input\n    label=\"Persons\"\n    variant=\"people\"\n    [value]=\"0\"\n    formControlName=\"persons\"\n  ></app-tip-input>\n  <button\n    type=\"submit\"\n    class=\"bg-cyan text-white font-space-mono font-bold py-2 rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed\"\n    [disabled]=\"inputForm.invalid\"\n  >\n    Submit\n  </button>\n</form>\n"
+        },
+        {
+            "name": "TipInput",
+            "id": "component-TipInput-55ac37a26a878d7b3b7beb17fe3e4f0e3eb98e367ad588ab2b69a7f544ac2c01d4c5aa87fa911689108edef0dd990c6c68b950710c72a3b58e5883a8aae2af32",
+            "file": "src/app/components/tip-input/tip-input.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "TipInput"
+                }
+            ],
             "selector": "app-tip-input",
             "styleUrls": [],
             "styles": [],
@@ -434,10 +521,270 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "inputsClass": [
+                {
+                    "name": "error",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>optional error message</p>\n",
+                    "line": 22,
+                    "rawdescription": "\noptional error message",
+                    "required": false
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "`Tip Amount:`",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>the label for the input field</p>\n",
+                    "line": 19,
+                    "rawdescription": "\nthe label for the input field",
+                    "required": false
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>value for the input field</p>\n",
+                    "line": 25,
+                    "rawdescription": "\nvalue for the input field",
+                    "required": false
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'currency'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"currency\" | \"people\"",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>we need variants one for entering currency input such as dollor, another for number of people.</p>\n",
+                    "line": 30,
+                    "rawdescription": "\nwe need variants one for entering currency input such as dollor, another for number of people.",
+                    "required": false
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "valueChange",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27,
+                    "required": false
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "inputField",
+                    "defaultValue": "viewChild<ElementRef<HTMLInputElement>>('tipInput')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 84
+                },
+                {
+                    "name": "onChange",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 80
+                },
+                {
+                    "name": "onTouched",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 81
+                },
+                {
+                    "name": "validateCurrencyInput",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                },
+                {
+                    "name": "validatePeopleInput",
+                    "defaultValue": "() => {...}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "inputIcon",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "\"/assets/dollar.svg\" | \"/assets/person.svg\"",
+                    "typeParameters": [],
+                    "line": 70,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "limitInputByWidth",
+                    "args": [
+                        {
+                            "name": "input",
+                            "type": "HTMLInputElement",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 58,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "input",
+                            "type": "HTMLInputElement",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 91,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 94,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 86,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -447,12 +794,15 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-tip-input',\n  imports: [],\n  templateUrl: './tip-input.html',\n})\nexport class TipInput {}\n",
+            "sourceCode": "import { Component, ElementRef, input, output, viewChild } from '@angular/core';\nimport { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { TipForm } from '../tip-form/tip-form';\n\n@Component({\n  selector: 'app-tip-input',\n  imports: [],\n  templateUrl: './tip-input.html',\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      multi: true,\n      useExisting: TipInput,\n    },\n  ],\n})\nexport class TipInput implements ControlValueAccessor {\n  /** the label for the input field */\n  label = input<string>(`Tip Amount:`);\n\n  /**optional error message */\n  error = input<string | null>(null);\n\n  /**value for the input field */\n  value = input<number>(0);\n\n  valueChange = output<number>();\n\n  /** we need variants one for entering currency input such as dollor, another for number of people.*/\n  variant = input<'currency' | 'people'>('currency');\n\n  validateCurrencyInput = (input: HTMLInputElement): void => {\n    input.value = input.value.match(/^\\d*\\.?\\d{0,2}/)?.[0] || '';\n    if (input.scrollWidth > input.clientWidth) {\n      input.value = input.value.slice(0, -1);\n    }\n    const numericValue = Number(input.value);\n    if (!isNaN(numericValue)) {\n      this.valueChange.emit(numericValue);\n    } else {\n      this.valueChange.emit(0);\n    }\n  };\n\n  validatePeopleInput = (input: HTMLInputElement): void => {\n    input.value = input.value.match(/^\\d*\\.?\\d{0,2}/)?.[0] || '';\n    if (input.scrollWidth > input.clientWidth) {\n      input.value = input.value.slice(0, -1);\n    }\n    const numericValue = Number(input.value);\n    if (!isNaN(numericValue)) {\n      this.valueChange.emit(numericValue);\n    } else {\n      this.valueChange.emit(0);\n    }\n  };\n\n  limitInputByWidth(input: HTMLInputElement) {\n    if (this.variant() === 'currency') {\n      this.validateCurrencyInput(input);\n    } else {\n      this.validatePeopleInput(input);\n    }\n\n    //Tell the form that input has been touched as well as changes the value\n    this.onTouched();\n    this.onChange(this.value());\n  }\n\n  inputIcon() {\n    //depending on the variant return the icon\n    if (this.variant() === 'currency') {\n      return '/assets/dollar.svg';\n    } else {\n      return '/assets/person.svg';\n    }\n  }\n\n  //We are also making input compinent a form compiment one\n  onChange: any = () => {};\n  onTouched: any = () => {};\n\n  //Also get a viewChild reference to the input field so we can set the value of the input field when the value changes.\n  inputField = viewChild<ElementRef<HTMLInputElement>>('tipInput');\n\n  writeValue(value: any): void {\n    if (this.inputField()) {\n      this.inputField()!.nativeElement.value = value.toString();\n    }\n  }\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n  registerOnTouched(fn: any): void {\n    this.onTouched = fn;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section class=\"flex flex-col gap-2\">\n  <label for=\"tip\" class=\"font-space-mono text-sm text-label mb-2\">Tip Amount: </label>\n  <div class=\"relative\">\n    <img class=\"absolute left-2 top-4 text-darkgreen\" src=\"/dollor.svg\" />\n    <input\n      id=\"tip\"\n      name=\"tip\"\n      class=\"pl-8 block text-right text-darkgreen font-space-mono font-bold bg-bgshadow text-2xl px-2 py-2\"\n    />\n  </div>\n</section>\n"
+            "implements": [
+                "ControlValueAccessor"
+            ],
+            "templateData": "<section class=\"flex flex-col gap-2\">\n  <div class=\"flex justify-between\">\n    <label for=\"tip\" class=\"font-space-mono text-sm text-label mb-2\">Tip Amount: </label>\n\n    @if (error()) {\n      <p class=\"font-space-mono text-xs text-error\">{{ error() }}</p>\n    }\n  </div>\n  <div class=\"flex items-center relative\">\n    <img class=\"absolute left-3 w-3 text-darkgreen\" [src]=\"inputIcon()\"/>\n    <input\n      #tipInput\n      id=\"tip\"\n      type=\"text\"\n      inputmode=\"numeric\"\n      (input)=\"limitInputByWidth(tipInput)\"\n      name=\"tip\"\n      [value]=\"value()\"\n      class=\"pl-10 block text-right text-darkgreen font-space-mono font-bold bg-bgshadow text-2xl px-2 py-2 rounded-sm w-full border-2\"\n      [class]=\"\n        error()\n          ? 'outline-none border-error'\n          : 'focus:outline-cyan focus:outline-2 border-transparent'\n      \"\n    />\n  </div>\n</section>\n"
         }
     ],
     "modules": [],
@@ -518,7 +868,7 @@
         "children": []
     },
     "coverage": {
-        "count": 7,
+        "count": 9,
         "status": "low",
         "files": [
             {
@@ -551,12 +901,21 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/tip-form/tip-form.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TipForm",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/tip-input/tip-input.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "TipInput",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coveragePercent": 25,
+                "coverageCount": "4/16",
                 "status": "low"
             },
             {

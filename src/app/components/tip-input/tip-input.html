@@ -1,11 +1,27 @@
 <section class="flex flex-col gap-2">
-  <label for="tip" class="font-space-mono text-sm text-label mb-2">Tip Amount: </label>
-  <div class="relative">
-    <img class="absolute left-2 top-4 text-darkgreen" src="/dollor.svg" />
+  <div class="flex justify-between">
+    <label for="tip" class="font-space-mono text-sm text-label mb-2">{{label()}}: </label>
+
+    @if (error()) {
+      <p class="font-space-mono text-xs text-error">{{ error() }}</p>
+    }
+  </div>
+  <div class="flex items-center relative">
+    <img class="absolute left-3 w-3 text-darkgreen" [src]="inputIcon()"/>
     <input
+      #tipInput
       id="tip"
+      type="text"
+      inputmode="numeric"
+      (input)="limitInputByWidth(tipInput)"
       name="tip"
-      class="pl-8 block text-right text-darkgreen font-space-mono font-bold bg-bgshadow text-2xl px-2 py-2 focus:outline-focusinput"
+      [value]="value()"
+      class="pl-10 block text-right text-darkgreen font-space-mono font-bold bg-bgshadow text-2xl px-2 py-2 rounded-sm w-full border-2"
+      [class]="
+        error()
+          ? 'outline-none border-error'
+          : 'focus:outline-cyan focus:outline-2 border-transparent'
+      "
     />
   </div>
 </section>
